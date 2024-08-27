@@ -12,7 +12,7 @@ import (
 func timer_log(interval int) {
 	for {
 		time.Sleep(time.Duration(interval) * time.Second)
-		log.Printf("Just tell you I'm still alive")
+		log.Printf("Just tell you I am still alive")
 	}
 }
 
