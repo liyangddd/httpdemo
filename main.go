@@ -10,8 +10,8 @@ import (
 
 func timer_log(interval int) {
 	for {
-		time.Sleep(time.Duration(interval) * time.Second)
 		log.Printf("Just tell you I am still alive")
+		time.Sleep(time.Duration(interval) * time.Second)
 	}
 }
 
@@ -27,7 +27,7 @@ func randam(w http.ResponseWriter, req *http.Request) {
 
 func hello(w http.ResponseWriter, req *http.Request) {
 	log.Printf("%s access /hello", req.RemoteAddr)
-	fmt.Fprintf(w, "hello\n")
+	fmt.Fprintf(w, "hello，%s\n", req.RemoteAddr)
 }
 
 func headers(w http.ResponseWriter, req *http.Request) {
@@ -40,7 +40,7 @@ func headers(w http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
-	go timer_log(10)
+	go timer_log(30)
 	http.HandleFunc("/hello", hello)
 	http.HandleFunc("/headers", headers)
 	http.HandleFunc("/random", randam)
