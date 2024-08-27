@@ -5,7 +5,6 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
-	"os"
 	"time"
 )
 
@@ -41,14 +40,6 @@ func headers(w http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
-	f, err := os.OpenFile("http.log", os.O_CREATE|os.O_APPEND|os.O_RDWR, os.ModePerm)
-	if err != nil {
-		log.Fatalln("open log file fail")
-	}
-	defer func() {
-		f.Close()
-	}()
-	log.SetOutput(f)
 	go timer_log(10)
 	http.HandleFunc("/hello", hello)
 	http.HandleFunc("/headers", headers)
